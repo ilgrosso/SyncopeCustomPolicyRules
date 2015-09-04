@@ -144,15 +144,6 @@ public class App {
             assertTrue(e.getElements().iterator().next().startsWith("InvalidPassword"));
         }
 
-        // 5. attempt to create user -> password policy fails because it has the same value as security answer
-        try {
-            client.getService(UserService.class).create(userTO);
-            fail();
-        } catch (SyncopeClientException e) {
-            assertEquals(ClientExceptionType.InvalidUser, e.getType());
-            assertTrue(e.getElements().iterator().next().startsWith("InvalidPassword"));
-        }
-
         // 6. change security answer to comply with password policy
         userTO.setSecurityAnswer("another value");
 
